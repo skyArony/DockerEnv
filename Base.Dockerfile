@@ -24,11 +24,13 @@ ENV SHELL=/bin/zsh
 
 # 设置时区
 # 这里主要是使用了 tzdata 包，并通过 dpkg-reconfigure 命令对 tzdata 进行重新配置
+# 主要是清除 lock，避免后续 apt 操作报错
 ENV TZ=Asia/Shanghai
 RUN apt-get install -y tzdata \
   && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
   && echo ${TZ} > /etc/timezone \
-  && dpkg-reconfigure --frontend noninteractive tzdata
+  && dpkg-reconfigure --frontend noninteractive tzdata \
+  && rm -rf /var/lib/apt/lists/*
 
 ####################### 配置 user00 账户 #######################
 

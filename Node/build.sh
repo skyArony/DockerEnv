@@ -1,3 +1,6 @@
+# 编译基础镜像
+docker build . -t env_dev_base:latest -f ../Base.Dockerfile
+
 # 编译镜像
 docker build . -t env_dev_node:latest -f AMD.Dockerfile
 
