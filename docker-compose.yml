@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  # # 2022.7.04 最新版本 8.0.29
+  # mysql:
+  #   image: mysql:8.0.29
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - /Users/skyarony/Documents/Project/My/Lottery/Volumes/Mysql/data:/var/lib/mysql # 数据库文件
+  #   deploy:
+  #     restart_policy:
+  #       condition: none # prod 环境要加上重启策略
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root # 管理账户 root 的密码
+  #     TZ: Asia/Shanghai
+
+  # # 2022.7.04 最新版本 5.2.0
+  # phpmyadmin:
+  #   image: phpmyadmin:5.2.0
+  #   ports:
+  #     - 8080:80
+  #   deploy:
+  #     restart_policy:
+  #       condition: none
+  #   environment:
+  #     PMA_HOST: mysql
+  #     PMA_PORT: 3306
+
+  # 开发环境
+  env_dev:
+    image: env_dev_base:1.0.0
+    tty: true
+    ports:
+      - 4000:4000
+    volumes:
+      - ../:/home/user00/Robot # 工程项目
+
+
+  # # 用来查看容器状态
+  # visualizer:
+  #     image: dockersamples/visualizer
+  #     ports:
+  #       - 8081:8080
+  #     volumes:
+  #       - /var/run/docker.sock:/var/run/docker.sock
+  #     stop_grace_period: 1m30s
+  #     deploy:
+  #       placement:
+  #         constraints:
+  #           - node.role==manager
