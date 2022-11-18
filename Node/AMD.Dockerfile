@@ -33,7 +33,3 @@ RUN pnpm add -g pnpm
 
 # nestjs
 RUN pnpm add -g @nestjs/cli
-
-# puppeteer
-RUN pnpm add -g puppeteer
-
